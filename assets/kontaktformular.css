@@ -1,0 +1,27 @@
+/* Kontaktformular fotomek.de (30.10.2026): ergaenzt die vorhandenen .kform/.field-Stile, nutzt nur die Farbvariablen der Seite (hell und dunkel) */
+.kform .b2b{font-size:15px;color:var(--ink2);margin:0 0 8px}
+.kform .req-legend{font-size:13.5px;color:var(--muted);margin:0 0 18px}
+.kform .req{color:var(--gold,var(--accent));margin-left:2px}
+.kform .opt{font-weight:400;color:var(--muted)}
+.field input[type=tel]{width:100%;min-height:48px;padding:12px 14px;border-radius:12px;border:1px solid var(--hair2);background:var(--bg);color:var(--ink);font:400 16px/1.4 var(--sans);-webkit-appearance:none;appearance:none}
+.field input[type=tel]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.kform .privacy{font-size:14.5px;color:var(--ink2);margin:4px 0 16px}
+.kform .privacy a{color:inherit;text-decoration:underline;text-decoration-color:var(--gold,var(--accent));text-underline-offset:3px}
+.kform .btn[disabled]{opacity:.6;cursor:progress}
+.kform .form-msg.err{color:#b3261e}
+:root[data-theme="dark"] .kform .form-msg.err{color:#ffb4ab}
+.kform .sent-note{display:none;margin:0 0 18px;padding:14px 16px;border:1px solid var(--gold,var(--accent));border-radius:var(--r-sm,14px);background:var(--accent-soft);color:var(--ink)}
+.kform .sent-note:target{display:block}
+@media (min-width:700px){.kform .row2{grid-template-columns:1fr 1fr}}
+
+/* Pflicht-Ankreuzbox Geschaeftskunde (01.11.2026), nur Farbvariablen der Seite, hell und dunkel */
+.kform .field-check{display:grid;grid-template-columns:24px 1fr;column-gap:12px;align-items:start;margin:6px 0 14px;padding:14px 16px;border:1px solid var(--hair2);border-radius:var(--r-sm,14px);background:var(--bg2)}
+.kform .field-check label{margin:0;font-size:15px;line-height:1.45;font-weight:500;color:var(--ink);cursor:pointer}
+.kform .field-check input[type=checkbox]{-webkit-appearance:none;appearance:none;width:22px;height:22px;min-height:0;margin:1px 0 0;padding:0;border:1.5px solid var(--hair2);border-radius:6px;background:var(--bg);cursor:pointer;display:grid;place-content:center;transition:background .15s,border-color .15s}
+.kform .field-check input[type=checkbox]::before{content:"";width:12px;height:12px;clip-path:polygon(14% 44%,0 59%,40% 100%,100% 20%,86% 6%,40% 72%);background:var(--on-gold);transform:scale(0);transition:transform .12s}
+.kform .field-check input[type=checkbox]:checked{background:var(--gold);border-color:var(--gold)}
+.kform .field-check input[type=checkbox]:checked::before{transform:scale(1)}
+.kform .field-check input[type=checkbox]:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.kform .field-check input[aria-invalid=true]{border-color:#b3261e}
+:root[data-theme="dark"] .kform .field-check input[aria-invalid=true]{border-color:#ffb4ab}
+.kform .field-check .field-err{grid-column:2;margin:6px 0 0}

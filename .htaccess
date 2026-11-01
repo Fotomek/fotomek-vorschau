@@ -1,0 +1,71 @@
+# =====================================================================
+# fotomek.de – .htaccess, Live-Stand 01.11.2026 (aus Entwurf 29.10.2026)
+# Grundsatz: Alle bisherigen Adressen bleiben bestehen (/, /impressum/,
+# /datenschutz/, /danke/, /kontakt.php, /bilder-v5/...,
+# /video-v5/..., /fonts/..., /llms.txt, /robots.txt, /sitemap.xml).
+# Darum sind nur wenige 301-Regeln noetig. Siehe WEITERLEITUNGSPLAN.md.
+#
+# Anker wie fotomek.de/#pakete werden vom Browser NICHT an den Server
+# gesendet und koennen hier nicht umgeleitet werden. Das erledigt ein
+# kleines Skript auf der Startseite (assets/site.js, "Alte Anker").
+# =====================================================================
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- 1) HTTPS und ohne www (nur aktivieren, wenn der Hoster das nicht schon erledigt) ---
+  # RewriteCond %{HTTPS} !=on [OR]
+  # RewriteCond %{HTTP_HOST} ^www\. [NC]
+  # RewriteRule ^ https://fotomek.de%{REQUEST_URI} [R=301,L]
+
+  # --- 2) Alte Dateipfade mit index.html auf die kurze Adresse (301) ---
+  # Die bisherigen Seiten verlinkten intern auf index.html, impressum/index.html,
+  # datenschutz/index.html. Diese Adressen funktionieren weiter und zeigen nun
+  # dauerhaft auf die kurze Form. Nur echte Browser-Anfragen (THE_REQUEST),
+  # damit DirectoryIndex keine Schleife erzeugt.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+
+  # --- 3) Neue Kurzformen ohne Schraegstrich ---
+  RewriteRule ^(webseiten|audits|gefunden-werden|kontakt|impressum|datenschutz|danke)$ /$1/ [R=301,L]
+
+  # --- 4) Optionale Komfort-Weiterleitungen (naheliegende Tippformen), auskommentiert ---
+  # RewriteRule ^(seo|geo|seo-geo)/?$ /gefunden-werden/ [R=301,L]
+  # RewriteRule ^(audit|website-audit)/?$ /audits/ [R=301,L]
+  # RewriteRule ^(webseite|websites)/?$ /webseiten/ [R=301,L]
+
+  # --- 4b) visualisierung/ und downloads/ sind nicht mehr Teil der Seite (01.11.2026). Optional umleiten statt 404: ---
+  # RewriteRule ^visualisierung/?$ / [R=301,L]
+  # RewriteRule ^downloads/ / [R=301,L]
+
+  # --- 5) Alte WordPress-Pfade ---
+  # In der Sicherung (robots.txt, sitemap.xml, Seiten) wurden KEINE WordPress-Pfade gefunden.
+  # Falls die Google Search Console noch alte Adressen meldet, hier ergaenzen, z. B.:
+  # RewriteRule ^wp-content/uploads/(.*)$ /bilder-v5/ [R=301,L]
+  # RewriteRule ^(wp-login\.php|wp-admin/?.*|xmlrpc\.php)$ - [G,L]
+</IfModule>
+
+# Entwurf: zusaetzliche Absicherung gegen Indexierung, solange der Entwurf online waere.
+# <IfModule mod_headers.c>
+#   Header set X-Robots-Tag "noindex, nofollow"
+# </IfModule>
+
+# Danke-Seite und Formular-Handler nicht indexieren (kontakt.php sendet selbst X-Robots-Tag).
+<IfModule mod_headers.c>
+  <FilesMatch "^kontakt\.php$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
+</IfModule>
+
+# Hinweis PHP: kontakt.php verlangt PHP 7.4+ (declare(strict_types), Typangaben, ??).
+# Auf PHP 5.6 bricht es beim Parsen ab. PHP-Version beim Hoster umstellen (Kundenmenue),
+# NICHT ueber diese Datei raten. Siehe README, offene Punkte.
+
+# --- SMTP-Konfiguration: gehoert AUSSERHALB des Webroots (../fotomek-smtp-config.php).
+# Zusaetzliche Absicherung, falls versehentlich eine Konfigurations- oder Vorlagendatei im Webroot landet:
+<FilesMatch "^(fotomek-)?smtp-config.*\.php$">
+  Require all denied
+</FilesMatch>

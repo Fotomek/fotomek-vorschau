@@ -1,0 +1,20 @@
+/* Akzentfarbe 2: Kühles Gold (Vorschlag Design 30.10.2026). Wird NACH variante.css und kontaktformular.css geladen.
+   Ersetzt das Goldbraun (#8a6a2f hell / #d9b878 dunkel). Weiss = #fcfcfb, Dunkel-Hintergrund = #111213 (neutral, ohne Blaustich).
+   --gold    = Akzent-Flaeche (Button, Punkte, mobile Leiste)
+   --on-gold = Schrift auf der Akzent-Flaeche
+   --accent  = Akzent als Text/Linie (Logo-Punkt, Fokusring, Entwurfs-Hinweis, Feldfokus)
+   --accent-hover = Hover-/Pressed-Stufe des Buttons */
+:root{--bg:#fcfcfb;--bg2:#f3f3f2;--card:#fcfcfb;--ink:#1d1d1f;--ink2:#3a3a3c;--muted:#6b6b6a;--hair:rgba(0,0,0,.09);--hair2:rgba(0,0,0,.16);--glass:rgba(252,252,251,.86);
+  --gold:#d1ab14;--gold2:#d1ab14;--on-gold:#111213;--accent:#735f00;--accent-ink:#111213;--accent-soft:rgba(209,171,20,.12);--accent-hover:#bd9a0f}
+:root[data-theme="dark"]{--bg:#111213;--bg2:#161718;--card:#1c1d1f;--ink:#fcfcfb;--ink2:#d4d4d2;--muted:#a2a2a0;--hair:rgba(255,255,255,.10);--hair2:rgba(255,255,255,.18);--glass:rgba(17,18,19,.86);
+  --gold:#dcb920;--gold2:#dcb920;--on-gold:#111213;--accent:#dcb920;--accent-ink:#111213;--accent-soft:rgba(220,185,32,.12);--accent-hover:#e6c84a;color-scheme:dark}
+.btn:hover,.mbar a.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover);opacity:1}
+:root[data-theme="dark"] .btn-ghost{border-color:var(--hair2)}
+/* Final 30.10.2026: Pflichtfeld-Stern als Text-Stufe (#735f00 hell / #dcb920 dunkel), #d1ab14 waere als Schrift auf Hell nur 2,14:1 */
+.kform .req{color:var(--accent)}
+/* Hero: Button und Akzente im neuen Gold, kein Goldbraun */
+.hero .btn{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
+.hero .btn:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.hero .btn:focus-visible{outline-color:var(--accent)}
+/* 30.10.2026: Header-Symbole (Hell/Dunkel, Menue) mit neutraler Hover-Flaeche statt transparentem Gold (wirkte olivfarben) */
+.icon-btn:hover,.icon-btn:focus-visible{background:var(--hair)}
