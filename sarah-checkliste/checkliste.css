@@ -1,0 +1,26 @@
+/* Checkliste Sarah, ergaenzt die Fotomek-Stile, keine neuen Farben */
+.cl-main .wrap{max-width:820px}
+.cl-main .lead{margin:0 0 8px}
+.cl-note{font-size:15px;color:var(--ink2);max-width:640px;margin:0 0 8px}
+.cl-form{margin:0 auto 64px}
+.cl-block{margin:8px 0 28px}
+.cl-block > h2{font-size:clamp(22px,3.2vw,28px);margin:8px 0 10px}
+.cl-item{border:1px solid var(--hair);border-radius:16px;padding:16px 16px 8px;margin:0 0 14px;background:var(--bg2)}
+.cl-item h3{font-size:18px;letter-spacing:-.02em;line-height:1.25;margin:0 0 12px}
+.cl-hint{font-size:13.5px;color:var(--muted);margin:0 0 12px;line-height:1.5}
+.cl-item .seg{margin:0 0 12px}
+.cl-item .field{margin:0 0 12px}
+.cl-item textarea{min-height:96px}
+.cl-thanks{padding:clamp(40px,8vw,80px) 0 80px}
+.cl-thanks h1{font-size:clamp(32px,6vw,52px);margin:0 0 18px}
+.cl-thanks p{max-width:640px}
+.cl-thanks .back{display:inline-flex;align-items:center;min-height:44px;color:var(--ink2);text-decoration:none;margin-top:28px}
+.cl-thanks .back:hover{color:var(--accent)}
+footer.cl-foot{border-top:1px solid var(--hair);padding:28px 0 36px;margin-top:8px}
+footer.cl-foot .foot-simple{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-start}
+footer.cl-foot nav{display:flex;flex-wrap:wrap;gap:8px 18px}
+footer.cl-foot nav a{color:var(--ink2);text-decoration:none}
+footer.cl-foot nav a:hover{color:var(--accent)}
+@media (max-width:480px){
+  .seg-opts{grid-template-columns:1fr}
+}
