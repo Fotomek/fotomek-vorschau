@@ -24,3 +24,7 @@ footer.cl-foot nav a:hover{color:var(--accent)}
 @media (max-width:480px){
   .seg-opts{grid-template-columns:1fr}
 }
+
+.cl-thanks{max-width:820px}
+footer.cl-foot .logo{display:flex;margin:0 0 10px;width:fit-content}
+footer.cl-foot .nap{display:block}
